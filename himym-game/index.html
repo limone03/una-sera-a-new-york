@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Una sera a New York</title>
+
+<!--
+  I font arrivano da Google Fonts quando c'è connessione; se la rete
+  non è disponibile (o il dominio è bloccato), il CSS ha già un buon
+  fallback su font di sistema, quindi il gioco resta leggibile.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"></div>
+<script>
+  // Fix per l'altezza reale della viewport su mobile (barra indirizzi
+  // che appare/scompare su Safari iOS e Chrome Android).
+  function setRealVh() {
+    document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+  }
+  setRealVh();
+  window.addEventListener('resize', setRealVh);
+  window.addEventListener('orientationchange', setRealVh);
+</script>
+
+<!--
+  IMPORTANTE: questi sono script "classici" (NON type="module").
+  Three.js è incluso localmente in assets/vendor/ ed espone la
+  variabile globale THREE. In questo modo il gioco funziona anche
+  aprendo questo file con un doppio click (file://), non solo
+  quando è pubblicato online — i moduli ES vengono bloccati dai
+  browser quando aperti da file locale, gli script normali no.
+-->
+<script src="assets/vendor/three.min.js"></script>
+<script src="js/data-characters.js"></script>
+<script src="js/data-locations.js"></script>
+<script src="js/data-story.js"></script>
+<script src="js/world3d.js"></script>
+<script src="js/dialogue.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
